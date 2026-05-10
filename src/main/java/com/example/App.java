@@ -3,22 +3,31 @@ package com.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class App {
+
     public static void main(String[] args) {
 
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+
+        WebDriver driver = new ChromeDriver(options);
 
         driver.get("https://www.saucedemo.com/");
-        driver.manage().window().maximize();
 
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
+
+        System.out.println("Login successful");
+
+        driver.quit();
     }
-}
-try {
-    Thread.sleep(5000); // wait 5 seconds
-} catch (InterruptedException e) {
-    e.printStackTrace();
 }
