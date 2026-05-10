@@ -16,8 +16,7 @@ public class App {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
 
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-
+        // Selenium Manager will handle ChromeDriver automatically
         WebDriver driver = new ChromeDriver(options);
 
         driver.get("https://www.saucedemo.com/");
