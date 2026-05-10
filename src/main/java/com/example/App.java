@@ -9,15 +9,18 @@ public class App {
 
     public static void main(String[] args) {
 
-        // Chrome configuration for Linux/Jenkins
         ChromeOptions options = new ChromeOptions();
+
+        // ===== Stable Jenkins/Linux headless setup =====
         options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--window-size=1920,1080");
 
-        // IMPORTANT:
-        // Do NOT set System.setProperty("webdriver.chrome.driver", ...)
+        // IMPORTANT: DO NOT set chromedriver path manually
+        // Selenium Manager will handle it automatically
 
         WebDriver driver = new ChromeDriver(options);
 
@@ -29,6 +32,8 @@ public class App {
             driver.findElement(By.id("login-button")).click();
 
             System.out.println("Login successful");
+
+            Thread.sleep(3000);
 
         } catch (Exception e) {
             e.printStackTrace();
