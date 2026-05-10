@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/Someesvaar/Auto-sausedemo.git'
+                git branch: 'master', url: 'https://github.com/tanishgowda4/MyMavenSeleniumApp01.git'
             }
         }
 
